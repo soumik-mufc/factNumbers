@@ -12,10 +12,13 @@ inputElement.addEventListener("change", inputChangeFunction);
 
 function inputChangeFunction() {
   const number = inputElement.value;
-  const fetchURL = `http://numbersapi.com/${number}`;
+  const fetchURL = `https://cors-anywhere.herokuapp.com/http://numbersapi.com/${number}`;
   // console.log(number.length)
+  const options = {
+    headers: {"x-requested-with": "", "origin": ""}
+};
   if(number.length !== 0) {
-    fetch(fetchURL)
+    fetch(fetchURL, options)
       .then(res => res.text())
       .then(data => {
         outputDiv.style.display = 'block';
